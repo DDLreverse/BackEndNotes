@@ -74,7 +74,33 @@
         function(req, res) {
           res.json({'time': req.time});
         }
-);
+    );
     ```
+    *Get Input From the Client*:
+    1. Using route parameters: named segments of the URL, delimited by slashes (/). The captured values can be found in the `req.params` object:
+    ```
+    route_path: '/user/:userId/book/:bookId'
+    actual_request_URL: '/user/546/book/6754'
+    req.params: {userId: '546', bookId: '6754'}
+    ```
+    Example:
+    ```
+    app.get('/:word/echo',
+        function(req, res) {
+          res.json({'echo': req.params.word});
+        }
+    );
+    ```
+    visiting `'/example/echo'` we get `{'echo': 'example'}`
+
+    2. Encoding the data after the route path, using a query string
+    `req.query`
+    ```
+    route_path: '/library'
+    actual_request_URL: '/library?userId=546&bookId=6754'
+    req.query: {userId: '546', bookId: '6754'}
+    ```
+    in POST requests, data doesn't appear in the URL, it is hidden in the request body. To parse the data, use `body-parser` package. 
+
 
     <br>
