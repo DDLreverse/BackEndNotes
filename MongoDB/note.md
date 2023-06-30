@@ -37,5 +37,13 @@
 
     let Person = mongoose.model('Person', personSchema);
     ```
+    Basic operations
+    ```Model.find()```
+    ```Model.findOne()```
+    ```Model.findById()```
 
-
+    ```Model.update()```: It can bulk-edit many documents matching certain criteria, but it doesn’t send back the updated document, only a 'status' message.
+    
+IMPORTANT: newer versions of mongoose do not support callback functions in queries (e.g., find()) any more, use the following instead:
+1. ```Model.find().then((result) => {})```
+2. ```result = await Model.find()```, be sure this is used in async function, e.g., ```app.post('/', async (req, res) => {})```
